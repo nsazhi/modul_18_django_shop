@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.views import View
 
 # Create your views here.
-# def index(request):
-#     return HttpResponse("Добро пожаловать в интернет-магазин!")
+def index(request):
+    return render(request, 'catalog/index.html')
 
 class IndexView(View):
     def get(self, request):
