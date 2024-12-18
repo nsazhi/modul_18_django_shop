@@ -1,12 +1,16 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Мой интернет-магазин{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href='{%  static "catalog/styles.css" %}'>
 </head>
 <body>
     <header>
+        <!-- Добавление логотипа -->
+        <img src="{% static 'catalog/images/logo.png' %}" alt="Логотип" width="100">
         <h1>Добро пожаловать в мой интернет-магазин</h1>
     </header>
     <main>
