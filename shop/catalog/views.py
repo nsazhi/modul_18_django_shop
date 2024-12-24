@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
+from .models import Product
 
 # Create your views here.
 products = [
@@ -38,18 +39,18 @@ def index(request):
 #         return HttpResponse(product_items)
 
 
-def product_list(request):
-    # Получаем параметр 'category' из строки запроса
-    category = request.GET.get('category')
-
-    # Если категория указана, фильтруем товары
-    if category:
-        filtered_products = [product for product in products if product['category'] == category]
-    else:
-        filtered_products = products
-
-    # Передаем товары в шаблон
-    return render(request, 'catalog/product_list.html', {'products': filtered_products})
+# def product_list(request):
+#     # Получаем параметр 'category' из строки запроса
+#     category = request.GET.get('category')
+#
+#     # Если категория указана, фильтруем товары
+#     if category:
+#         filtered_products = [product for product in products if product['category'] == category]
+#     else:
+#         filtered_products = products
+#
+#     # Передаем товары в шаблон
+#     return render(request, 'catalog/product_list.html', {'products': filtered_products})
 
 
 def add_product(request):
@@ -72,3 +73,14 @@ def add_product(request):
 
     # Если GET-запрос, отображаем форму
     return render(request, 'catalog/add_product.html')
+
+
+def product_list(request):
+    products = Product.objects.all() # Получаем все товары из базы данных
+    return render(request, 'catalog/product_list.html', {'products': products})
+
+
+def phones_list(request):
+    # Фильтрация товаров по категории "Телефоны"
+    products = Product.objects.filter(category__name="Телефоны")
+    return render(request,'catalog/phones_list.html',{'products': products})

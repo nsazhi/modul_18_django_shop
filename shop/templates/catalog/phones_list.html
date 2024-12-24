@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Телефоны{% endblock %}
+
+{% block content %}
+<h2>Список телефонов</h2>
+
+<ul>
+    {% for product in products %}
+    <li>
+        {{ product.name }} — {{ product.price }} ₽
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
